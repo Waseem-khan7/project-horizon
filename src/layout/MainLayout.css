@@ -1,9 +1,11 @@
 .layout{
 
     display:grid;
-    /* grid-template-columns:260px 1fr; */
-    grid-template-columns: minmax(80px, 260px) 1fr;
+    grid-template-columns:260px 1fr;
+    /* grid-template-columns: minmax(80px, 260px) 1fr; */
     min-height:100vh;
+    max-width: 1440px;
+    margin: 0 auto;
     width:100%;
 
 }
@@ -13,5 +15,6 @@
     min-width: 0;
     padding:24px;
     overflow-x:auto;
+    background: #f8fafc;
 
 }
