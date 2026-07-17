@@ -1,0 +1,59 @@
+
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* ---------- DESIGN TOKENS ---------- */
+
+:root{
+
+    /* Typography */
+
+    --font-family-primary:'Inter',sans-serif;
+
+    --font-size-xs:12px;
+    --font-size-sm:14px;
+    --font-size-md:16px;
+    --font-size-lg:20px;
+    --font-size-xl:24px;
+    --font-size-2xl:32px;
+
+    --font-weight-regular:400;
+    --font-weight-medium:500;
+    --font-weight-semibold:600;
+    --font-weight-bold:700;
+
+    /* Colors */
+
+    --color-primary:#2563eb;
+    --color-text:#111827;
+    --color-background:#f8fafc;
+    --color-sidebar:#ffffff;
+
+    /* Layout */
+
+    --sidebar-width:260px;
+    --container-max-width:1440px;
+
+    /* Spacing */
+
+    --space-xs:4px;
+    --space-sm:8px;
+    --space-md:16px;
+    --space-lg:24px;
+    --space-xl:32px;
+
+}
+
+body{
+
+    font-family:var(--font-family-primary);
+    font-size:var(--font-size-md);
+    background:var(--color-background);
+    color:var(--color-text);
+
+}
