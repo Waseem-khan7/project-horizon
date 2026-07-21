@@ -1,4 +1,4 @@
-import OptionsPanel from "../components/settings/OptionsPanel";
+import OptionsPanel from "../features/OptionsPanel";
 
 function Settings() {
   return (
