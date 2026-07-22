@@ -3,12 +3,22 @@ import ProjectCard from "./ProjectCard";
 
 type ProjectListProps = {
   searchTerm: string;
+  technology: string;
+  status: string;
 };
 
-function ProjectList({ searchTerm }: ProjectListProps) {
-  const filteredProjects = projects.filter((project) =>
-    project.name.toLowerCase().includes(searchTerm.toLowerCase()),
-  );
+function ProjectList({ searchTerm, technology, status }: ProjectListProps) {
+  const filteredProjects = projects.filter((project) => {
+    const matchesSearch = project.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+    const matchesTechnology = !technology || project.technology === technology;
+
+    const matchesStatus = !status || project.status === status;
+
+    return matchesSearch && matchesTechnology && matchesStatus;
+  });
 
   if (filteredProjects.length === 0) {
     return (

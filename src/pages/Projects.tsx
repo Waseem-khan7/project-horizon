@@ -1,11 +1,21 @@
 import { useState } from "react";
+import PageHeader from "../components/ui/PageHeader";
+import ProjectFilters from "../components/projects/ProjectFilters";
 import ProjectList from "../components/projects/ProjectList";
 import SearchBar from "../components/projects/SearchBar";
-import PageHeader from "../components/ui/PageHeader";
+import useProjectFilters from "../hooks/useProjectFilters";
 
 function Projects() {
-  const [searchTerm, setSearchTerm] = useState("");
   const [message, setMessage] = useState("");
+
+  const {
+    searchTerm,
+    technology,
+    status,
+    setSearchTerm,
+    setTechnology,
+    setStatus,
+  } = useProjectFilters();
 
   const handleNewProject = () => {
     setMessage("🚀 New Project feature coming soon!");
@@ -17,7 +27,6 @@ function Projects() {
 
   return (
     <div className="mx-auto max-w-7xl">
-      {/* Header */}
       <PageHeader
         title="Projects"
         description="Manage and monitor all your active projects."
@@ -25,18 +34,26 @@ function Projects() {
         onButtonClick={handleNewProject}
       />
 
-      {/* Message */}
       {message && (
         <div className="mb-6 rounded-xl border border-blue-200 bg-blue-50 px-4 py-3 text-sm font-medium text-blue-700">
           {message}
         </div>
       )}
 
-      {/* Search */}
       <SearchBar searchTerm={searchTerm} onSearchChange={setSearchTerm} />
 
-      {/* Project List */}
-      <ProjectList searchTerm={searchTerm} />
+      <ProjectFilters
+        technology={technology}
+        status={status}
+        onTechnologyChange={(e) => setTechnology(e.target.value)}
+        onStatusChange={(e) => setStatus(e.target.value)}
+      />
+
+      <ProjectList
+        searchTerm={searchTerm}
+        technology={technology}
+        status={status}
+      />
     </div>
   );
 }
