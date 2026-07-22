@@ -6,6 +6,7 @@ import ActionSection from "../components/options/ActionSection";
 import PreferencesSection from "../components/options/PreferencesSection";
 import ProjectInfoSection from "../components/options/ProjectInfoSection";
 import WorkspaceCard from "../components/ui/WorkspaceCard";
+import PageHeader from "../components/ui/PageHeader";
 
 function OptionsPanel() {
   const [projectName, setProjectName] = useState("");
@@ -102,36 +103,40 @@ function OptionsPanel() {
   }, []);
 
   return (
-    <WorkspaceCard
-      title="Project Settings"
-      description="Configure your project preferences and workspace options."
-    >
-      <ProjectInfoSection
-        projectName={projectName}
-        projectNameError={projectNameError}
-        technology={technology}
-        theme={theme}
-        description={description}
-        descriptionError={descriptionError}
-        technologyDescriptions={technologyDescriptions}
-        onProjectNameChange={handleProjectNameChange}
-        onTechnologyChange={handleTechnologyChange}
-        onThemeChange={handleThemeChange}
-        onDescriptionChange={handleDescriptionChange}
+    <div className="space-y-8">
+      <PageHeader
+        title="Project Settings"
+        description="Configure your project preferences and workspace options."
       />
 
-      <PreferencesSection
-        notifications={notifications}
-        onToggleNotifications={handleToggleNotifications}
-      />
+      <WorkspaceCard>
+        <ProjectInfoSection
+          projectName={projectName}
+          projectNameError={projectNameError}
+          technology={technology}
+          theme={theme}
+          description={description}
+          descriptionError={descriptionError}
+          technologyDescriptions={technologyDescriptions}
+          onProjectNameChange={handleProjectNameChange}
+          onTechnologyChange={handleTechnologyChange}
+          onThemeChange={handleThemeChange}
+          onDescriptionChange={handleDescriptionChange}
+        />
 
-      <ActionSection
-        isFormValid={isFormValid}
-        saveMessage={saveMessage}
-        onSave={handleSaveProject}
-        onClear={handleClearForm}
-      />
-    </WorkspaceCard>
+        <PreferencesSection
+          notifications={notifications}
+          onToggleNotifications={handleToggleNotifications}
+        />
+
+        <ActionSection
+          isFormValid={isFormValid}
+          saveMessage={saveMessage}
+          onSave={handleSaveProject}
+          onClear={handleClearForm}
+        />
+      </WorkspaceCard>
+    </div>
   );
 }
 

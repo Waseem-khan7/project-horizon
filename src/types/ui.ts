@@ -16,6 +16,14 @@ export type InputFieldProps = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
+export type PageHeaderProps = {
+  title: string;
+  description?: string;
+  buttonText?: string;
+  onButtonClick?: () => void;
+  children?: React.ReactNode;
+};
+
 export type SelectFieldProps = {
   id: string;
   label: string;
@@ -45,7 +53,7 @@ export type ToggleSwitchProps = {
 };
 
 export type WorkspaceCardProps = {
-  title: string;
-  description?: string;
+  // title: string;
+  // description?: string;
   children: ReactNode;
 };

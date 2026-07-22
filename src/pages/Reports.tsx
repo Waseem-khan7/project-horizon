@@ -1,7 +1,14 @@
+import PageHeader from "../components/ui/PageHeader";
+
 function Reports() {
   return (
     <div>
-      <h1 className="text-3xl font-bold">Reports</h1>
+      <PageHeader
+        title="Reports"
+        description="Monitor project reports and team performance."
+        // buttonText="Generate Report"
+        // onButtonClick={handleGenerateReport}
+      />
 
       <p className="mt-2 flex justify-center text-slate-500">
         Reports page coming soon...
