@@ -7,6 +7,7 @@ import PreferencesSection from "../components/options/PreferencesSection";
 import ProjectInfoSection from "../components/options/ProjectInfoSection";
 import WorkspaceCard from "../components/ui/WorkspaceCard";
 import AppHeader from "../layout/AppHeader";
+import { useAppSelector } from "../store/hooks";
 
 function OptionsPanel() {
   const [projectName, setProjectName] = useState("");
@@ -102,11 +103,15 @@ function OptionsPanel() {
     setSaveMessage("");
   }, []);
 
+  const workspaceName = useAppSelector(
+    (state) => state.workspace.workspaceName,
+  );
+
   return (
     <div className="space-y-8">
       <AppHeader
-        title="Project Settings"
-        description="Configure your project preferences and workspace options."
+        title="Settings"
+        description={`Manage preferences and configuration for ${workspaceName}.`}
       />
 
       <WorkspaceCard>

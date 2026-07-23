@@ -1,30 +1,32 @@
-import { useEffect, type Dispatch, type SetStateAction } from "react";
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import NavItem from "./NavItem";
 import { navItems } from "./NavItems";
 
+import { useAppDispatch } from "../../store/hooks";
+import { closeSidebar } from "../../store/slices/uiSlice";
+
 type SidebarProps = {
   sidebarOpen: boolean;
-  setSidebarOpen: Dispatch<SetStateAction<boolean>>;
   isDesktop: boolean;
 };
 
-function Sidebar({ sidebarOpen, setSidebarOpen, isDesktop }: SidebarProps) {
+function Sidebar({ sidebarOpen, isDesktop }: SidebarProps) {
   const location = useLocation();
+  const dispatch = useAppDispatch();
 
-  // Close sidebar after navigation on mobile
   useEffect(() => {
     if (!isDesktop) {
-      setSidebarOpen(false);
+      dispatch(closeSidebar());
     }
-  }, [location.pathname, isDesktop, setSidebarOpen]);
+  }, [location.pathname, isDesktop, dispatch]);
 
   return (
     <>
       {!isDesktop && sidebarOpen && (
         <div
-          onClick={() => setSidebarOpen(false)}
+          onClick={() => dispatch(closeSidebar())}
           className="fixed inset-0 z-30 bg-slate-900/40 backdrop-blur-sm"
         />
       )}

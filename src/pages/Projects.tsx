@@ -4,9 +4,14 @@ import ProjectFilters from "../components/projects/ProjectFilters";
 import ProjectList from "../components/projects/ProjectList";
 import SearchBar from "../components/projects/SearchBar";
 import useProjectFilters from "../hooks/useProjectFilters";
+import { useAppSelector } from "../store/hooks";
+
 
 function Projects() {
   const [message, setMessage] = useState("");
+  const workspaceName = useAppSelector(
+    (state) => state.workspace.workspaceName,
+  );
 
   const {
     searchTerm,
@@ -29,7 +34,7 @@ function Projects() {
     <div className="mx-auto max-w-7xl">
       <AppHeader
         title="Projects"
-        description="Manage and monitor all your active projects."
+        description={`Manage and monitor all active projects in ${workspaceName}.`}
         buttonText="+ New Project"
         onButtonClick={handleNewProject}
       />

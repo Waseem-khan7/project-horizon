@@ -1,11 +1,16 @@
 import AppHeader from "../layout/AppHeader";
+import { useAppSelector } from "../store/hooks";
 
 function Dashboard() {
+  const workspaceName = useAppSelector(
+    (state) => state.workspace.workspaceName,
+  );
+
   return (
     <div className="space-y-8">
       <AppHeader
         title="Dashboard"
-        description="Overview of your workspace and project activity."
+        description={`Welcome to ${workspaceName}. Monitor your workspace activities and recent updates.`}
       />
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
         <div className="rounded-2xl bg-white p-6 shadow">

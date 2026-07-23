@@ -1,6 +1,13 @@
 import { useEffect, useState, type ReactNode } from "react";
 import Sidebar from "../components/navigation/Sidebar";
 
+import {
+  toggleSidebar,
+  openSidebar,
+  closeSidebar,
+} from "../store/slices/uiSlice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+
 type Props = {
   children: ReactNode;
 };
@@ -10,9 +17,9 @@ function MainLayout({ children }: Props) {
     () => window.matchMedia("(min-width:1024px)").matches,
   );
 
-  const [sidebarOpen, setSidebarOpen] = useState(
-    () => window.matchMedia("(min-width:1024px)").matches,
-  );
+  const dispatch = useAppDispatch();
+
+  const sidebarOpen = useAppSelector((state) => state.ui.sidebarOpen);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width:1024px)");
@@ -21,16 +28,18 @@ function MainLayout({ children }: Props) {
       setIsDesktop(e.matches);
 
       if (e.matches) {
-        setSidebarOpen(true);
+        dispatch(openSidebar());
       } else {
-        setSidebarOpen(false);
+        dispatch(closeSidebar());
       }
     };
+
+    handleChange(mediaQuery as unknown as MediaQueryListEvent);
 
     mediaQuery.addEventListener("change", handleChange);
 
     return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-50 to-white">
@@ -39,18 +48,14 @@ function MainLayout({ children }: Props) {
 
         {!isDesktop && (
           <button
-            onClick={() => setSidebarOpen((prev) => !prev)}
+            onClick={() => dispatch(toggleSidebar())}
             className="fixed top-4 left-4 z-50 flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white text-xl shadow-md transition hover:bg-slate-100"
           >
             ☰
           </button>
         )}
 
-        <Sidebar
-          sidebarOpen={sidebarOpen}
-          setSidebarOpen={setSidebarOpen}
-          isDesktop={isDesktop}
-        />
+        <Sidebar sidebarOpen={sidebarOpen} isDesktop={isDesktop} />
 
         <main
           className={`flex-1 overflow-x-hidden p-4 transition-all duration-300 md:p-6 lg:p-8 ${
