@@ -1,15 +1,16 @@
 import { useCallback, useState } from "react";
-import { validateDescription, validateProjectName } from "../utils/validation";
-import { technologyDescriptions } from "../utils/constants";
+import {
+  validateDescription,
+  validateProjectName,
+} from "../../utils/validation";
+import { technologyDescriptions } from "../../utils/constants";
 
-import ActionSection from "../components/options/ActionSection";
-import PreferencesSection from "../components/options/PreferencesSection";
-import ProjectInfoSection from "../components/options/ProjectInfoSection";
-import WorkspaceCard from "../components/ui/WorkspaceCard";
-import AppHeader from "../layout/AppHeader";
-import { useAppSelector } from "../store/hooks";
+import ActionSection from "./ActionSection";
+import PreferencesSection from "./PreferencesSection";
+import ProjectSettingsSection from "./ProjectSettingsSection";
+import WorkspaceCard from "../ui/WorkspaceCard";
 
-function OptionsPanel() {
+function SettingsPanel() {
   const [projectName, setProjectName] = useState("");
   const [technology, setTechnology] = useState("");
   const [theme, setTheme] = useState("");
@@ -103,19 +104,10 @@ function OptionsPanel() {
     setSaveMessage("");
   }, []);
 
-  const workspaceName = useAppSelector(
-    (state) => state.workspace.workspaceName,
-  );
-
   return (
     <div className="space-y-8">
-      <AppHeader
-        title="Settings"
-        description={`Manage preferences and configuration for ${workspaceName}.`}
-      />
-
       <WorkspaceCard>
-        <ProjectInfoSection
+        <ProjectSettingsSection
           projectName={projectName}
           projectNameError={projectNameError}
           technology={technology}
@@ -145,4 +137,4 @@ function OptionsPanel() {
   );
 }
 
-export default OptionsPanel;
+export default SettingsPanel;

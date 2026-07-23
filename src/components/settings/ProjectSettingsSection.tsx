@@ -24,7 +24,7 @@ type Props = {
   onDescriptionChange: (value: string) => void;
 };
 
-const ProjectInfoSection = memo(function ProjectInfoSection({
+const ProjectSettingsSection = memo(function ProjectInfoSection({
   projectName,
   projectNameError,
   technology,
@@ -80,4 +80,4 @@ const ProjectInfoSection = memo(function ProjectInfoSection({
   );
 });
 
-export default ProjectInfoSection;
+export default ProjectSettingsSection;
