@@ -1,4 +1,10 @@
 import AppHeader from "../layout/AppHeader";
+
+import DashboardStats from "../components/dashboard/DashboardStats";
+import RecentActivity from "../components/dashboard/RecentActivity";
+import ProjectProgress from "../components/dashboard/ProjectProgress";
+import RecentProjects from "../components/dashboard/RecentProjects";
+
 import { useAppSelector } from "../store/hooks";
 
 function Dashboard() {
@@ -7,32 +13,27 @@ function Dashboard() {
   );
 
   return (
-    <div className="space-y-8">
+    <div className="mx-auto max-w-7xl space-y-8">
       <AppHeader
         title="Dashboard"
-        description={`Welcome to ${workspaceName}. Monitor your workspace activities and recent updates.`}
+        description={`Monitor your workspace activity and performance for ${workspaceName}.`}
       />
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
-        <div className="rounded-2xl bg-white p-6 shadow">
-          <h3 className="text-slate-500">Projects</h3>
-          <p className="mt-3 text-4xl font-bold">24</p>
-        </div>
 
-        <div className="rounded-2xl bg-white p-6 shadow">
-          <h3 className="text-slate-500">Tasks</h3>
-          <p className="mt-3 text-4xl font-bold">128</p>
-        </div>
+      {/* Stats */}
 
-        <div className="rounded-2xl bg-white p-6 shadow">
-          <h3 className="text-slate-500">Reports</h3>
-          <p className="mt-3 text-4xl font-bold">18</p>
-        </div>
+      <DashboardStats />
 
-        <div className="rounded-2xl bg-white p-6 shadow">
-          <h3 className="text-slate-500">Users</h3>
-          <p className="mt-3 text-4xl font-bold">540</p>
-        </div>
+      {/* Activity + Progress */}
+
+      <div className="grid gap-8 lg:grid-cols-2">
+        <RecentActivity />
+
+        <ProjectProgress />
       </div>
+
+      {/* Projects */}
+
+      <RecentProjects />
     </div>
   );
 }

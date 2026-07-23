@@ -7,6 +7,7 @@ import {
   closeSidebar,
 } from "../store/slices/uiSlice";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
+import Footer from "./Footer";
 
 type Props = {
   children: ReactNode;
@@ -57,12 +58,16 @@ function MainLayout({ children }: Props) {
 
         <Sidebar sidebarOpen={sidebarOpen} isDesktop={isDesktop} />
 
-        <main
-          className={`flex-1 overflow-x-hidden p-4 transition-all duration-300 md:p-6 lg:p-8 ${
-            !isDesktop ? "pt-20" : "pt-8"
-          }`}
-        >
-          {children}
+        <main className="flex min-h-screen flex-1 flex-col overflow-x-hidden">
+          <div
+            className={`flex-1 p-4 transition-all duration-300 md:p-6 lg:p-8 ${
+              !isDesktop ? "pt-20" : "pt-8"
+            }`}
+          >
+            {children}
+          </div>
+
+          <Footer />
         </main>
       </div>
     </div>
