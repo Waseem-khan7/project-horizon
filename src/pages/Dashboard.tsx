@@ -1,9 +1,9 @@
-import PageHeader from "../components/ui/PageHeader";
+import AppHeader from "../layout/AppHeader";
 
 function Dashboard() {
   return (
     <div className="space-y-8">
-      <PageHeader
+      <AppHeader
         title="Dashboard"
         description="Overview of your workspace and project activity."
       />

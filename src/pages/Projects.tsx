@@ -1,5 +1,5 @@
 import { useState } from "react";
-import PageHeader from "../components/ui/PageHeader";
+import AppHeader from "../layout/AppHeader";
 import ProjectFilters from "../components/projects/ProjectFilters";
 import ProjectList from "../components/projects/ProjectList";
 import SearchBar from "../components/projects/SearchBar";
@@ -27,7 +27,7 @@ function Projects() {
 
   return (
     <div className="mx-auto max-w-7xl">
-      <PageHeader
+      <AppHeader
         title="Projects"
         description="Manage and monitor all your active projects."
         buttonText="+ New Project"

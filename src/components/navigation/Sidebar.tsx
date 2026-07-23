@@ -1,4 +1,4 @@
-import { useEffect, useState, type Dispatch, type SetStateAction } from "react";
+import { useEffect, type Dispatch, type SetStateAction } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import NavItem from "./NavItem";
@@ -7,42 +7,18 @@ import { navItems } from "./NavItems";
 type SidebarProps = {
   sidebarOpen: boolean;
   setSidebarOpen: Dispatch<SetStateAction<boolean>>;
+  isDesktop: boolean;
 };
 
-function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
+function Sidebar({ sidebarOpen, setSidebarOpen, isDesktop }: SidebarProps) {
   const location = useLocation();
 
-  const [isDesktop, setIsDesktop] = useState(
-    () => window.matchMedia("(min-width:1024px)").matches,
-  );
-
+  // Close sidebar after navigation on mobile
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width:1024px)");
-
-    const handleScreenChange = (e: MediaQueryListEvent | MediaQueryList) => {
-      const desktop = e.matches;
-
-      setIsDesktop(desktop);
-
-      if (desktop) {
-        setSidebarOpen(true);
-      } else {
-        setSidebarOpen(false);
-      }
-    };
-
-    handleScreenChange(mediaQuery);
-
-    mediaQuery.addEventListener("change", handleScreenChange);
-
-    return () => mediaQuery.removeEventListener("change", handleScreenChange);
-  }, [setSidebarOpen]);
-
-  useEffect(() => {
-    if (!isDesktop && sidebarOpen) {
+    if (!isDesktop) {
       setSidebarOpen(false);
     }
-  }, [location.pathname, isDesktop, sidebarOpen, setSidebarOpen]);
+  }, [location.pathname, isDesktop, setSidebarOpen]);
 
   return (
     <>
@@ -54,16 +30,18 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
       )}
 
       <aside
-        className={`fixed top-0 left-0 z-40 flex h-screen flex-col overflow-hidden border-r border-slate-200 bg-white transition-all duration-300 ease-in-out ${
+        className={` ${
+          isDesktop ? "sticky top-0 self-stretch" : "fixed top-0 left-0"
+        } z-40 flex min-h-screen flex-col overflow-hidden border-r border-slate-200 bg-white transition-all duration-300 ease-in-out ${
           isDesktop
-            ? sidebarOpen
-              ? "w-65"
-              : "w-0"
+            ? "w-65"
             : sidebarOpen
               ? "w-65 translate-x-0 shadow-xl"
               : "w-65 -translate-x-full"
-        } lg:relative`}
+        } `}
       >
+        {/* Logo */}
+
         <div className="flex h-20 items-center justify-center border-b border-slate-200">
           <Link
             to="/"
@@ -72,6 +50,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }: SidebarProps) {
             Horizon
           </Link>
         </div>
+
+        {/* Navigation */}
 
         <nav className="flex-1 space-y-2 overflow-y-auto px-4 py-6">
           {navItems.map((item) => (
