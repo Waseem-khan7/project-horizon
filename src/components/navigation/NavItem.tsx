@@ -9,11 +9,12 @@ function NavItem({ title, path }: Props) {
   return (
     <NavLink
       to={path}
+      end={path === "/"}
       className={({ isActive }) =>
-        `flex items-center rounded-xl px-4 py-3 transition-all duration-300 hover:scale-[1.02] hover:shadow-md ${
+        `block rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
           isActive
-            ? "bg-blue-600 text-white shadow-lg"
-            : "text-slate-700 hover:bg-blue-100"
+            ? "bg-blue-600 text-white shadow-sm"
+            : "text-slate-700 hover:bg-slate-100 hover:text-blue-600"
         } `
       }
     >

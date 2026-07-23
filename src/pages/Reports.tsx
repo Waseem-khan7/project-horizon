@@ -1,18 +1,21 @@
 import PageHeader from "../components/ui/PageHeader";
+import ReportsOverview from "../components/reports/ReportsOverview";
+import RecentReportsTable from "../components/reports/RecentReportsTable";
+import ReportCategories from "../components/reports/ReportCategories";
 
 function Reports() {
   return (
-    <div>
+    <div className="mx-auto max-w-7xl space-y-8">
       <PageHeader
         title="Reports"
-        description="Monitor project reports and team performance."
-        // buttonText="Generate Report"
-        // onButtonClick={handleGenerateReport}
+        description="Monitor project insights, business metrics, and recent reporting activity."
       />
 
-      <p className="mt-2 flex justify-center text-slate-500">
-        Reports page coming soon...
-      </p>
+      <ReportsOverview />
+
+      <RecentReportsTable />
+
+      <ReportCategories />
     </div>
   );
 }

@@ -1,11 +1,3 @@
-export function getQueryParam(
-  searchParams: URLSearchParams,
-  key: string,
-  defaultValue = "",
-) {
-  return searchParams.get(key) ?? defaultValue;
-}
-
 export function updateQueryParam(
   searchParams: URLSearchParams,
   key: string,

@@ -1,13 +1,12 @@
 import { useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getQueryParam, updateQueryParam } from "../utils/queryParams";
+import { updateQueryParam } from "../utils/queryParams";
+import { parseProjectQuery } from "../utils/routeValidation";
 
 function useProjectFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const searchTerm = getQueryParam(searchParams, "search");
-  const technology = getQueryParam(searchParams, "technology");
-  const status = getQueryParam(searchParams, "status");
+  const { searchTerm, technology, status } = parseProjectQuery(searchParams);
 
   const updateSearchParam = useCallback(
     (key: string, value: string, replace = false) => {

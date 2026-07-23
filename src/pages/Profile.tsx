@@ -1,16 +1,24 @@
 import PageHeader from "../components/ui/PageHeader";
+import PersonalInfo from "../components/profile/PersonalInfo";
+import AccountInfo from "../components/profile/AccountInfo";
+import SkillsSection from "../components/profile/SkillsSection";
+import ActivityTimeline from "../components/profile/ActivityTimeline";
 
 function Profile() {
   return (
-    <div>
+    <div className="mx-auto max-w-7xl space-y-8">
       <PageHeader
         title="Profile"
         description="Manage your personal information and account settings."
       />
 
-      <p className="mt-2 flex justify-center text-slate-500">
-        Profile page coming soon...
-      </p>
+      <PersonalInfo />
+
+      <AccountInfo />
+
+      <SkillsSection />
+
+      <ActivityTimeline />
     </div>
   );
 }
