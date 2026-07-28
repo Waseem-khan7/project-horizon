@@ -9,6 +9,8 @@ import {
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import Footer from "./Footer";
 
+import NotificationBanner from "../components/common/NotificationBanner";
+
 type Props = {
   children: ReactNode;
 };
@@ -43,8 +45,9 @@ function MainLayout({ children }: Props) {
   }, [dispatch]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-50 to-white">
-      <div className="mx-auto flex max-w-[1440px] items-start">
+    <div className="min-h-screen bg-linear-to-br from-slate-100 via-slate-50 to-white">
+      <NotificationBanner />
+      <div className="mx-auto flex max-w-360 items-start">
         {/* Hamburger */}
 
         {!isDesktop && (

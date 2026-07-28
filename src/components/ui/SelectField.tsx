@@ -9,13 +9,6 @@ function SelectField({
   description,
   onChange,
 }: SelectFieldProps) {
-  console.log({
-    id,
-    value,
-    options,
-    hasValue: options.includes(value),
-  });
-
   return (
     <div className="space-y-2">
       <label

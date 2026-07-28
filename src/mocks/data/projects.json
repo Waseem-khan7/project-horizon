@@ -1,0 +1,16 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "name": "Project Horizon",
+      "technology": "React",
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "name": "QuickBlog",
+      "technology": "Next.js",
+      "status": "Completed"
+    }
+  ]
+}

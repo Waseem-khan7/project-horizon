@@ -12,7 +12,7 @@ function RecentProjects() {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[600px]">
+        <table className="w-full min-w-150">
           <thead>
             <tr className="border-b border-slate-200 text-left text-sm text-slate-400">
               <th className="px-6 py-4 font-medium">Project</th>

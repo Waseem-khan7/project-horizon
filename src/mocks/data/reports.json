@@ -1,0 +1,14 @@
+{
+  "reports": [
+    {
+      "id": 1,
+      "title": "Weekly Progress",
+      "status": "Completed"
+    },
+    {
+      "id": 2,
+      "title": "Monthly Analytics",
+      "status": "Pending"
+    }
+  ]
+}

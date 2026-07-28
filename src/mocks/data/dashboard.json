@@ -1,0 +1,22 @@
+{
+  "stats": {
+    "projects": 12,
+    "completed": 8,
+    "pending": 4,
+    "teamMembers": 18
+  },
+  "recentActivities": [
+    {
+      "id": 1,
+      "title": "Dashboard updated"
+    },
+    {
+      "id": 2,
+      "title": "New report generated"
+    },
+    {
+      "id": 3,
+      "title": "Project assigned"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import ProjectList from "../components/projects/ProjectList";
 import SearchBar from "../components/projects/SearchBar";
 import useProjectFilters from "../hooks/useProjectFilters";
 import { useAppSelector } from "../store/hooks";
-
+import useDebounce from "../hooks/useDebounce";
 
 function Projects() {
   const [message, setMessage] = useState("");
@@ -21,6 +21,8 @@ function Projects() {
     setTechnology,
     setStatus,
   } = useProjectFilters();
+
+  const debouncedSearchTerm = useDebounce(searchTerm, 400);
 
   const handleNewProject = () => {
     setMessage("🚀 New Project feature coming soon!");
@@ -55,7 +57,7 @@ function Projects() {
       />
 
       <ProjectList
-        searchTerm={searchTerm}
+        searchTerm={debouncedSearchTerm}
         technology={technology}
         status={status}
       />
