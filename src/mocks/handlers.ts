@@ -7,10 +7,44 @@ import reports from "./data/reports.json";
 import settings from "./data/settings.json";
 import workspace from "./data/workspace.json";
 
+import { mockConfig } from "./simulation";
+
 export const handlers = [
   http.get("https://api.project-horizon.dev/dashboard", async () => {
-    await delay(1200);
-    return HttpResponse.json(dashboard);
+    await delay(mockConfig.delay);
+
+    switch (mockConfig.scenario) {
+      case "success":
+        return HttpResponse.json(dashboard);
+
+      case "unauthorized":
+        return HttpResponse.json({ message: "Unauthorized" }, { status: 401 });
+
+      case "forbidden":
+        return HttpResponse.json({ message: "Forbidden" }, { status: 403 });
+
+      case "not-found":
+        return HttpResponse.json(
+          { message: "Dashboard not found" },
+          { status: 404 },
+        );
+
+      case "server-error":
+        return HttpResponse.json(
+          { message: "Internal Server Error" },
+          { status: 500 },
+        );
+
+      case "network-error":
+        return HttpResponse.error();
+
+      case "timeout":
+        await delay(15000);
+        return HttpResponse.json(dashboard);
+
+      default:
+        return HttpResponse.json(dashboard);
+    }
   }),
 
   http.get("https://api.project-horizon.dev/profile", async () => {

@@ -36,19 +36,13 @@ function Dashboard() {
         description={`Monitor your workspace activity and performance for ${workspaceName}.`}
       />
 
-      {/* Stats */}
-
       <DashboardStats />
-
-      {/* Activity + Progress */}
 
       <div className="grid gap-8 lg:grid-cols-2">
         <RecentActivity />
 
         <ProjectProgress />
       </div>
-
-      {/* Projects */}
 
       <RecentProjects />
     </div>

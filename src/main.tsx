@@ -6,6 +6,9 @@ import "./index.css";
 
 import { Provider } from "react-redux";
 import { store } from "./store/store";
+import { setStore } from "./store/storeProvider.ts";
+
+setStore(store);
 
 // Start MSW only in development
 async function enableMocking() {
